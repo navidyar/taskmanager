@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <title>My Tasks</title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body onload="tasks.displayTasks();">
+
+<h1>My Tasks List</h1>
+
+<form action="javascript:void(0);" method="post" id="searchForm" autocomplete="off">
+    <label for="search">Search Task</label>
+    <input type="text" id="searchtask">
+    <input type="submit" id="searchtaskbtn" value="Search" onclick="tasks.searchTask();">
+</form>
+
+<div id="searchresults"></div>
+
+<form action="javascript:void(0);" method="post" id="addForm" autocomplete="off">
+    <label for="addtask">Add Task</label>
+    <input type="text" id="addtask" autofocus>
+    <input type="submit" id="addtaskbtn" value="add" onclick="tasks.addTask();">
+</form>
+
+<div id="mytasks"></div>
+
+</body>
+</html>

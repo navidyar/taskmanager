@@ -1,0 +1,134 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin-left: 20px;
+}
+
+form[id="addForm"],
+form[id="updateForm"],
+form[id="searchForm"]
+{
+    margin-top: 0em;
+    margin-bottom: 50px;
+}
+
+#mytasks {
+    margin-bottom: 50px;
+}
+
+#searchresults {
+    margin:-20px 0 20px 0;
+}
+
+label {
+    font-size: 1.2em;
+    margin: 0 0 5px 5px;
+}
+
+input[type="text"] {
+    padding-right: 50px;
+}
+
+input[type="submit"], input[type="button"] {
+    margin-left: -5px;
+    border-radius: 0 5px 5px 0;
+}
+
+input {
+    vertical-align: middle;
+    padding:10px;
+    font-size: 1.2em;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #000;
+    margin: 0;
+}
+
+input:focus, input:hover {
+    border: 1px solid #000;
+}
+
+/* Remove the input focus blue box in firefox. */
+input:focus {
+    outline: none;
+}
+
+a {
+    color:#000;
+    text-decoration: none;
+}
+
+li, label {
+    list-style-type: none;
+    display: block;
+}
+
+ul#taskslist > li > img {
+    vertical-align: middle;
+    margin-right: 0px;
+    padding: 5px;
+}
+
+ul#taskslist > li > img:first-child {
+    border: 1px solid #ccc;
+    border-width: 0 1px 0 0;
+    padding: 10px;
+}
+
+ul#taskslist > li > img:last-child,
+ul#taskslist > li > img:nth-last-child(2)
+{
+    padding: 100px;
+    border: 1px solid #ccc;
+    border-width: 0 0 0 1px;
+    padding: 10px;
+    float: right;
+}
+
+ul#taskslist > li > form {
+    display:inline;
+}
+
+ul#taskslist > li > form > input[type="text"] {
+    padding: 10px 5px;
+    border: 1px solid red; 
+    font-size: 1.1em;
+    border: 0;
+    width: 550px;
+}
+
+ul#taskslist > li > form > input[type="submit"] {
+    margin: 0;
+    border-radius: 0;
+    padding:0;
+    font-size: 0;
+    border-radius: 0;
+    border: 0;
+}
+
+ul#taskslist {
+    max-width: 700px;
+    padding-left: 0;
+    border-radius: 5px;
+    list-style-type: none; /* Remove bullets */
+}
+
+ul#taskslist > li {
+    padding: 0;
+    border: 1px solid #ccc;
+    border-width: 1px 1px 0 1px;
+}
+
+ul#taskslist > li:first-child {
+    border-radius: 7px 7px 0 0;
+}
+
+ul#taskslist > li:last-child {
+    border: 1px solid #ccc;
+    border-radius: 0 0 7px 7px;
+}
+
+ul#taskslist > li:only-child {
+    border-radius: 7px;
+}
