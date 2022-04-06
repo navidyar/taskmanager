@@ -11,7 +11,7 @@ const tasks = {
     },
 
     displayTasks: function() {
-        
+
         if (this.getData() == null) {   // Check if Tasks List is set in localStorage/sessionStorage
             this.tasksList = [];
             this.setData();
@@ -24,18 +24,16 @@ const tasks = {
         if (this.tasksList != "") {
             html += '<ul id="taskslist">'
             html += '<li style="padding:10px;">Add New Task Form Can Go Here!</li>';
-            // html += '<li><form><input type="text"/></form></li>';
             for (let i = 0; i < this.tasksList.length; i++) {
-                html += 
-                `<li>
-                    <img src="images/checkmark.png" />
-                    <form action="javascript:void(0);" method="post" autocomplete="off" id="updateForm">
-                        <input type="text" class="updatetask${i}" value="${this.tasksList[i]}" onchange="tasks.updateTask('${i}');">
-                    </form>
-                    <img src="images/delete.png" onclick="tasks.deleteTask('${i}');" />
-                </li>`;
+                html += `
+                <li class="taskitemfield">
+                    <img src="images/checkmark.png" class="img checkmark-img" />
+                    <div class="updatetask${i} taskitem single-line" contenteditable="true" class="updatetask${i}" onblur="tasks.updateTask(${i})">${this.tasksList[i]}</div>
+                    <img src="images/delete.png" class="img delete-img" onclick="tasks.deleteTask('${i}');" />
+                </li>
+                `;
             }
-            html += '<li style="padding:10px;">Click text to edit. Form controls can go here, such as "select all"</li>';
+            html += '<li style="clear:both; padding:10px;">Click text to edit. Form controls can go here, such as "select all"</li>';
             html += '</ul>'
         } else {
             html = 'No Task Items Available';
@@ -50,15 +48,17 @@ const tasks = {
             this.tasksList.push(taskName.value);
             this.setData();
             taskName.value = '';
+            this.displayTasks();
         }
-        this.displayTasks();
     },
     
-    updateTask: function(taskID, taskName) {
-        let taskUpdateName = document.querySelector('.updatetask'+taskID);
-        this.tasksList[taskID] = taskUpdateName.value;
+    updateTask: function(taskID) {
+        let taskUpdateName = document.querySelector('.updatetask' + taskID);
+        this.tasksList[taskID] = taskUpdateName.innerHTML;
         this.setData();
-        taskUpdateName.focus(); // refocus on recently updated field
+        this.displayTasks();
+        //taskUpdateName.focus(); // refocus on recently updated field
+        //document.querySelector('.updatetask' + taskID).focus();
     },
 
     deleteTask: function(deleteItem) {

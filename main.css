@@ -7,7 +7,6 @@ body {
 }
 
 form[id="addForm"],
-form[id="updateForm"],
 form[id="searchForm"]
 {
     margin-top: 0em;
@@ -64,51 +63,8 @@ li, label {
     display: block;
 }
 
-ul#taskslist > li > img {
-    vertical-align: middle;
-    margin-right: 0px;
-    padding: 5px;
-}
-
-ul#taskslist > li > img:first-child {
-    border: 1px solid #ccc;
-    border-width: 0 1px 0 0;
-    padding: 10px;
-}
-
-ul#taskslist > li > img:last-child,
-ul#taskslist > li > img:nth-last-child(2)
-{
-    padding: 100px;
-    border: 1px solid #ccc;
-    border-width: 0 0 0 1px;
-    padding: 10px;
-    float: right;
-}
-
-ul#taskslist > li > form {
-    display:inline;
-}
-
-ul#taskslist > li > form > input[type="text"] {
-    padding: 10px 5px;
-    border: 1px solid red; 
-    font-size: 1.1em;
-    border: 0;
-    width: 550px;
-}
-
-ul#taskslist > li > form > input[type="submit"] {
-    margin: 0;
-    border-radius: 0;
-    padding:0;
-    font-size: 0;
-    border-radius: 0;
-    border: 0;
-}
-
 ul#taskslist {
-    max-width: 700px;
+    max-width: 800px;
     padding-left: 0;
     border-radius: 5px;
     list-style-type: none; /* Remove bullets */
@@ -117,18 +73,73 @@ ul#taskslist {
 ul#taskslist > li {
     padding: 0;
     border: 1px solid #ccc;
-    border-width: 1px 1px 0 1px;
+    border-width: 0px 1px 1px 1px;
 }
 
 ul#taskslist > li:first-child {
+    font-size:  1.2em;
+    background-color: #f3f3f3;
     border-radius: 7px 7px 0 0;
+    border-width: 1px 1px 1px 1px;
 }
 
 ul#taskslist > li:last-child {
+    height: 20px;
+    font-size:  1.2em;
+    background-color: #f3f3f3;
     border: 1px solid #ccc;
     border-radius: 0 0 7px 7px;
+    border-width: 0px 1px 1px 1px;
 }
 
-ul#taskslist > li:only-child {
-    border-radius: 7px;
+li.taskitemfield {
+    position: relative;
+}
+
+.taskitem {
+    outline: none;
+    font-size: 1.2em;
+    padding: 10px 40px 10px 40px;
+    overflow: hidden;
+}
+
+.taskitemfield:focus, .taskitemfield:hover {
+    background-color: #fff1de;
+}
+
+.taskitemfield:nth-child(odd):focus, .taskitemfield:nth-child(odd):hover {
+    background-color: #fff1de;
+}
+
+.taskitemfield:nth-child(odd) {
+    background-color: aliceblue;
+}
+
+.img {
+    position: absolute;
+    top: 11px;
+}
+
+.checkmark-img {
+    left: 10px;
+}
+
+.delete-img {
+    position: absolute;
+    right: 10px;
+}
+
+/* Used to Limit ContentEditable Elements to Single Lines Instead of Multi-Line */
+[contenteditable="true"].single-line {
+    width: 675px;
+    white-space: nowrap;
+    overflow: hidden;
+} 
+[contenteditable="true"].single-line br {
+    display:none;
+
+}
+[contenteditable="true"].single-line * {
+    display:inline;
+    white-space:nowrap;
 }
