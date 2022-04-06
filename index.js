@@ -11,19 +11,25 @@ const tasks = {
     },
 
     displayTasks: function() {
-
-        if (this.getData() == null) {   // Check if Tasks List is set in localStorage/sessionStorage
+        // Check if Tasks List is set in localStorage/sessionStorage
+        if (this.getData() == null) {
             this.tasksList = [];
             this.setData();
         } else {
             this.tasksList = this.getData();
         }
-
         // Display Tasks List
         let html = "";
+        html += '<ul id="taskslist">'
+        html += `
+            <li id="addtaskfield" style="padding:10px 10px 15px 10px; height:33px;">
+                <form action="javascript:void(0);" method="post" id="addForm" autocomplete="off">
+                    <label for="addtask">Add New Task :</label>
+                    <input type="text" id="addtask" autofocus>
+                    <input type="submit" id="addtaskbtn" value="add" onclick="tasks.addTask();">
+                </form>
+            </li>`;
         if (this.tasksList != "") {
-            html += '<ul id="taskslist">'
-            html += '<li style="padding:10px;">Add New Task Form Can Go Here!</li>';
             for (let i = 0; i < this.tasksList.length; i++) {
                 html += `
                 <li class="taskitemfield">
@@ -33,11 +39,11 @@ const tasks = {
                 </li>
                 `;
             }
-            html += '<li style="clear:both; padding:10px;">Click text to edit. Form controls can go here, such as "select all"</li>';
-            html += '</ul>'
         } else {
-            html = 'No Task Items Available';
+            html += '<li id="emptylist"><p>No Task Items Available</p></li>';
         }
+        html += '<li style="clear:both; padding:10px;">&nbsp;</li>';
+        html += '</ul>'
         document.getElementById("mytasks").innerHTML = html;
     },
 
@@ -47,18 +53,19 @@ const tasks = {
             this.tasksList = this.getData();
             this.tasksList.push(taskName.value);
             this.setData();
-            taskName.value = '';
             this.displayTasks();
         }
+        document.getElementById('addtask').focus();
     },
     
     updateTask: function(taskID) {
-        let taskUpdateName = document.querySelector('.updatetask' + taskID);
-        this.tasksList[taskID] = taskUpdateName.innerHTML;
+        let taskName = this.tasksList[taskID] = document.querySelector('.updatetask' + taskID).innerHTML;
+        taskName = taskName.replace(/\&nbsp;/g, ""); // Replace HTML non-breaking space entity
+        taskName = taskName.replace( /(<([^>]+)>)/ig, ""); // Replace HTML tags
+        taskName = taskName.trim();
+        document.querySelector('.updatetask' + taskID).innerHTML = taskName;
+        this.tasksList[taskID] = taskName;
         this.setData();
-        this.displayTasks();
-        //taskUpdateName.focus(); // refocus on recently updated field
-        //document.querySelector('.updatetask' + taskID).focus();
     },
 
     deleteTask: function(deleteItem) {
@@ -68,18 +75,16 @@ const tasks = {
     },
     
     searchTask: function() {
-        let searchterm = document.getElementById('searchtask');        
+        let searchterm = document.getElementById('searchtask');
         let html = "";
-
         if (this.tasksList.includes(searchterm.value)) {
-            html = searchterm.value;
+            html = `<div class="searchfound"><span>Search Result Found for: </span><span>${searchterm.value}</span>`;
         } else if (searchterm.value == "") {
             html = "Please enter a search term.";
         } else {
-            html = `Sorry, no search results for: <span style="font-weight:bold">${searchterm.value}</span>`;
+            html = `<div class="searchnotfound"><span>Sorry, no search results for: </span><span>${searchterm.value}</span>`;
         }
         document.getElementById("searchresults").innerHTML = html;
         searchterm.value = '';
-        this.displayTasks();
     },
 };

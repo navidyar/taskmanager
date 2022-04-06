@@ -1,3 +1,7 @@
+/* ============================================ */
+/*              GENERAL Styling                 */
+/* ============================================ */
+
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -6,19 +10,54 @@ body {
     margin-left: 20px;
 }
 
+a {
+    color:#000;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+    display: block;
+}
+
+div.searchfound {
+    font-size: 1.2em;
+}
+
+div.searchfound > span:first-child {
+    color: green;
+}
+
+div.searchnotfound {
+    font-size: 1.2em;
+}
+
+div.searchnotfound > span:first-child {
+    color: red;
+}
+
+/* Used to Limit ContentEditable Elements to Single Line Instead of Multi-Line */
+/* --------------------------------------------------------------------------- */
+[contenteditable="true"].single-line {
+    width: 675px;
+    white-space: nowrap;
+    overflow: hidden;
+} 
+[contenteditable="true"].single-line br {
+    display:none;
+
+}
+[contenteditable="true"].single-line * {
+    display:inline;
+    white-space:nowrap;
+}
+/* --------------------------------------------------------------------------- */
+
 form[id="addForm"],
 form[id="searchForm"]
 {
     margin-top: 0em;
     margin-bottom: 50px;
-}
-
-#mytasks {
-    margin-bottom: 50px;
-}
-
-#searchresults {
-    margin:-20px 0 20px 0;
 }
 
 label {
@@ -27,7 +66,8 @@ label {
 }
 
 input[type="text"] {
-    padding-right: 50px;
+    width: 300px;
+    padding-right: 10px;
 }
 
 input[type="submit"], input[type="button"] {
@@ -44,30 +84,57 @@ input {
     margin: 0;
 }
 
-input:focus, input:hover {
-    border: 1px solid #000;
-}
-
 /* Remove the input focus blue box in firefox. */
 input:focus {
     outline: none;
 }
 
-a {
-    color:#000;
-    text-decoration: none;
-}
+/* ============================================ */
 
-li, label {
-    list-style-type: none;
+#searchForm > label {
     display: block;
 }
+
+#searchresults {
+    margin:-20px 0 20px 0;
+}
+
+#mytasks {
+    margin-bottom: 50px;
+}
+
+/* ============================================ */
+/*              AddTask Styling                 */
+/* ============================================ */
+
+li#addtaskfield label {
+    font-size: 1.0em;
+    padding-right: 10px;
+}
+
+li#addtaskfield input[type="text"] {
+    height: 15px;
+    width: 500px;
+    font-size: 1.0em;
+}
+
+li#addtaskfield input[type="submit"] {
+    height: 37px;
+    padding-top: 7px;
+    border-left: 0;
+    font-size: 1.0em;
+    margin-right: -2px;
+}
+
+/* ============================================ */
+/*              TaskList Styling                */
+/* ============================================ */
 
 ul#taskslist {
     max-width: 800px;
     padding-left: 0;
     border-radius: 5px;
-    list-style-type: none; /* Remove bullets */
+    list-style-type: none;
 }
 
 ul#taskslist > li {
@@ -78,7 +145,7 @@ ul#taskslist > li {
 
 ul#taskslist > li:first-child {
     font-size:  1.2em;
-    background-color: #f3f3f3;
+    background-color: #e9e9e9;
     border-radius: 7px 7px 0 0;
     border-width: 1px 1px 1px 1px;
 }
@@ -86,7 +153,7 @@ ul#taskslist > li:first-child {
 ul#taskslist > li:last-child {
     height: 20px;
     font-size:  1.2em;
-    background-color: #f3f3f3;
+    background-color: #e9e9e9;
     border: 1px solid #ccc;
     border-radius: 0 0 7px 7px;
     border-width: 0px 1px 1px 1px;
@@ -103,43 +170,40 @@ li.taskitemfield {
     overflow: hidden;
 }
 
-.taskitemfield:focus, .taskitemfield:hover {
-    background-color: #fff1de;
+.taskitemfield:focus,
+.taskitemfield:hover {
+    background-color: #fff7ed;
 }
 
-.taskitemfield:nth-child(odd):focus, .taskitemfield:nth-child(odd):hover {
-    background-color: #fff1de;
+.taskitemfield:nth-child(odd):focus,
+.taskitemfield:nth-child(odd):hover {
+    background-color: #fff7ed;
 }
 
 .taskitemfield:nth-child(odd) {
-    background-color: aliceblue;
+    background-color: #f3f8fc;
 }
 
-.img {
+li img.img {
     position: absolute;
     top: 11px;
 }
 
-.checkmark-img {
+li img.checkmark-img {
     left: 10px;
 }
 
-.delete-img {
+li img.delete-img {
     position: absolute;
     right: 10px;
 }
 
-/* Used to Limit ContentEditable Elements to Single Lines Instead of Multi-Line */
-[contenteditable="true"].single-line {
-    width: 675px;
-    white-space: nowrap;
-    overflow: hidden;
-} 
-[contenteditable="true"].single-line br {
-    display:none;
-
+#emptylist {
+    text-align: center;
 }
-[contenteditable="true"].single-line * {
-    display:inline;
-    white-space:nowrap;
+
+#emptylist > p {
+    display: inline-block;
+    color: red;
+    font-size: 1.0em;
 }
