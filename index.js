@@ -3,7 +3,7 @@ const tasks = {
     tasksList: [],
 
     setData: function() {       // Save Tasks List to localStorage/sessionStorage
-        sessionStorage.setItem("tasksList", JSON.stringify(this.tasksList)); 
+        sessionStorage.setItem("tasksList", JSON.stringify(this.tasksList));
     },
 
     getData: function() {       // Get Tasks List from localStorage/sessionStorage
